@@ -11,6 +11,8 @@
 
     //$ville=$_GET[""];
 
+    $ville="Paris";
+
     // configurer proxy
 
     // créer url
