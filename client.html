@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+
+	<div class="form-group" method="post">
+      <input type="text" id='villeId'/>
+	  <input type="button" class="btn btn-info" id='boutonId' onClick='afficherTitre(), chercherVille()' value="Rechercher"/></br></br>
+    </div>
+
+	<div id ="info"><div>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+
+
+  <script>
+
+  function chercherVille()
+  {
+    var ville= document.getElementById('villeId').value;
+    console.log(ville);
+    var requette = new XMLHttpRequest();
+    //requette.withCredentials = true;
+
+    requette.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+        //var resulat=requette.response;
+        // traiter resultat
+      console.log(requette.response['ville1']);
+        //console.log(this.responseText);
+      }
+    });
+
+    // envoyer la requete
+    //requette.open("GET", "https://api.openweathermap.org/data/2.5/weather?q="+ville+"&appid=645cf13c9ea699ab969d3afe1fc1f814");
+    var url= "http://localhost/test/DUT_INFO/webservice/MeetMyVacation/serverr.php?pays="+ville;
+    console.log(url);
+    requette.open("GET", url);
+    requette.send();
+  }
+
+  function afficherTitre(){
+
+	 var contenu = document.getElementById("info");
+	 var div = document.createElement("DIV");
+	 var h1 = document.createElement("H1");
+	 var hr = document.createElement("HR");
+	 var span = document.createElement("SPAN");
+	 var texte = document.createTextNode("Informations de votre ville");
+
+
+	 div.setAttribute("class", "jumbotron");
+	 h1.setAttribute("class", "display-3");
+	 h1.setAttribute("id", "idTitre");
+	 hr.setAttribute("class", "my-4");
+	 span.setAttribute("id", "idContenu");
+
+	 h1.appendChild(texte);
+	 div.appendChild(h1);
+	 div.appendChild(hr);
+	 div.appendChild(span);
+	 contenu.appendChild(div);
+
+  }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+</html>
