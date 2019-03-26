@@ -1,15 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
   <head>
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
 
-    <form class="" action="index.html" method="post">
-      
-
+    <form class=""  method="post">
+      <input type="text" id='villeId'/>
     </form>
+    <input type="button" id='boutonId' onClick='chercherVille()' value="Rechercher"/>
 
   </body>
+
+
+  <script>
+
+  function chercherVille()
+  {
+    var ville= document.getElementById('villeId').value;
+    console.log(ville);
+    var requette = new XMLHttpRequest();
+    //requette.withCredentials = true;
+
+    requette.addEventListener("readystatechange", function () {
+      if (this.readyState === 4) {
+
+        // traiter resultat
+
+        console.log(this.responseText);
+      }
+    });
+
+    // envoyer la requete
+    //requette.open("GET", "https://api.openweathermap.org/data/2.5/weather?q="+ville+"&appid=645cf13c9ea699ab969d3afe1fc1f814");
+    var url= "http://localhost/test/DUT_INFO/webservice/MeetMyVacation/clientAPI/serveurAPI.php?ville="+ville;
+    console.log(url);
+    requette.open("GET", url);
+    requette.send();
+  }
+
+
+
+  </script>
 </html>
